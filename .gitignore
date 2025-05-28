@@ -1,0 +1,12 @@
+# Ignore virtual environment folder
+venv/
+__pycache__
+_note.txt
+# Ignore config file with API keys
+config.py
+
+# Ignore Company data folder, it's 
+# for you to look back on to see if 
+# the right values were used to 
+# calculations were correct.
+company_data/
