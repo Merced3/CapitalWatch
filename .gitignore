@@ -1,4 +1,5 @@
 # Ignore virtual environment folder
+.venv/
 venv/
 __pycache__
 _note.txt
