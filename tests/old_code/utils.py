@@ -3,7 +3,7 @@
 import os
 import json
 import requests
-from config import POLYGON_API_KEY, BASE_URL
+from src.capitalwatch.config import POLYGON_API_KEY, BASE_URL
 
 def fetch_financials(ticker):
     url = f"{BASE_URL}?ticker={ticker}&limit=1&apiKey={POLYGON_API_KEY}"
@@ -186,7 +186,7 @@ def fetch_market_cap(ticker, shares_outstanding):
         mc_accuracy = "rough"
     return market_cap, mc_accuracy
 
-def load_tickers(filepath="tickers.txt"):
+def load_tickers(filepath="tickers.txt"): # This file is no longer in root, this is in src/universe
     with open(filepath, "r") as f:
         return [line.strip().upper() for line in f if line.strip()]
 

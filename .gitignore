@@ -1,13 +1,32 @@
-# Ignore virtual environment folder
+# Virtual environments
 .venv/
 venv/
-__pycache__
-_note.txt
-# Ignore config file with API keys
-config.py
 
-# Ignore Company data folder, it's 
-# for you to look back on to see if 
-# the right values were used to 
-# calculations were correct.
-company_data/
+# Python cache / compiled files
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local notes / scratch files
+_note.txt
+
+# Secrets / local config
+src/capitalwatch/config.py
+.env
+
+# Generated raw data / caches
+data/raw/
+
+# Optional future generated outputs
+data/cache/
+data/output/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode/settings.json
