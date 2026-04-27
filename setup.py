@@ -11,6 +11,8 @@ setup(
     entry_points={
         "console_scripts": [
             "capitalwatch=capitalwatch.cli:main",
+            "capitalwatch-universe=capitalwatch.universe_cli:main",
+            "capitalwatch-universe-export=capitalwatch.universe_export_cli:main",
         ]
     },
 )

@@ -1,4 +1,5 @@
 import requests
+from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 from capitalwatch import config
 
@@ -30,6 +31,13 @@ class MassiveClient:
         url = f"https://api.polygon.io/v3/reference/tickers/{ticker}?apiKey={self.api_key}"
         return self._get_json(url)
 
+    def fetch_reference_tickers(self, params=None, next_url=None):
+        if next_url is not None:
+            return self._get_json(self._append_api_key(next_url))
+
+        url = "https://api.polygon.io/v3/reference/tickers"
+        return self._get_json(url, params=self._with_api_key(params))
+
     def fetch_shares_outstanding(self, ticker):
         response = self.fetch_ticker_reference(ticker)
 
@@ -38,6 +46,21 @@ class MassiveClient:
         except (KeyError, TypeError):
             raise Exception(f"Could not fetch shares outstanding for {ticker}")
 
-    def _get_json(self, url):
-        response = self.session.get(url)
+    def _get_json(self, url, params=None):
+        response = self.session.get(url, params=params)
+        response.raise_for_status()
         return response.json()
+
+    def _append_api_key(self, url):
+        parsed = urlparse(url)
+        query_items = parse_qsl(parsed.query, keep_blank_values=True)
+
+        if not any(key == "apiKey" for key, _ in query_items):
+            query_items.append(("apiKey", self.api_key))
+
+        return urlunparse(parsed._replace(query=urlencode(query_items)))
+
+    def _with_api_key(self, params):
+        request_params = dict(params or {})
+        request_params.setdefault("apiKey", self.api_key)
+        return request_params
