@@ -6,6 +6,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_TICKER_FILE = PROJECT_ROOT / "data" / "universe" / "tickers.txt"
 TEST_TICKER_FIXTURE = PROJECT_ROOT / "tests" / "fixtures" / "tickers.txt"
 RAW_COMPANY_DATA_DIR = PROJECT_ROOT / "data" / "raw" / "company_data"
+OUTPUT_DATA_DIR = PROJECT_ROOT / "data" / "output"
 
 MASSIVE_API_KEY = os.getenv("MASSIVE_API_KEY", "YOUR_API_KEY")
 POLYGON_API_KEY = os.getenv("POLYGON_API_KEY", "")

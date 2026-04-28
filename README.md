@@ -11,7 +11,7 @@ CapitalWatch scans a list of ticker symbols, fetches financial data through the 
 |   |   `-- partial/              # Snapshots for incomplete financials
 |   `-- universe/tickers.txt      # Runtime ticker source
 |-- src/capitalwatch/
-|   |-- cli.py                    # Main scan pipeline
+|   |-- cli/                      # Command-line parsing and output
 |   |-- config.py                 # Local runtime config
 |   |-- clients/
 |   |-- services/
@@ -55,43 +55,43 @@ If you prefer file-based local config, edit `src/capitalwatch/config.py` and rep
 ## Run
 
 ```bash
-capitalwatch
+capitalwatch scan
 ```
 
 After editable install, this also works:
 
 ```bash
-python -m capitalwatch
+python -m capitalwatch scan
 ```
 
 ## Print The Active Stock Universe
 
-This is a separate process from the scan/rank pipeline and only prints the current active stock tickers from the Massive-backed reference endpoint.
+This only prints the current active stock tickers from the Massive-backed reference endpoint.
 
 ```bash
-capitalwatch-universe
+capitalwatch universe print
 ```
 
 After editable install, this also works:
 
 ```bash
-python -m capitalwatch.universe_cli
+python -m capitalwatch universe print
 ```
 
 ## Save The Active Stock Universe
 
-This is a separate export process. It saves ticker records from the same Massive universe endpoint to JSONL so the data can be reused later without coupling storage to the fetch logic.
+This saves ticker records from the same Massive universe endpoint to JSONL so the data can be reused later without coupling storage to the fetch logic.
 
 Save full records:
 
 ```bash
-capitalwatch-universe-export
+capitalwatch universe export
 ```
 
 Save only selected fields:
 
 ```bash
-capitalwatch-universe-export --fields ticker name market locale type active primary_exchange
+capitalwatch universe export --fields ticker name market locale type active primary_exchange
 ```
 
 Default output path:
