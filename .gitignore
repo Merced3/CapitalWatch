@@ -17,6 +17,7 @@ _note.txt
 
 # Secrets / local config
 src/capitalwatch/config.py
+CapitalWatch_Sensitive_Info.txt
 .env
 
 # Generated raw data / caches
